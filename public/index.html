@@ -1,0 +1,6 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#123f3a"><title>Conexões · Consulta de plano</title><link rel="stylesheet" href="styles.css"></head>
+<body><main><header><p class="tag">CONEXÕES · PILOTO</p><h1>Meu plano</h1><p>Teste independente de consulta. Nenhum dado da plataforma será alterado.</p></header>
+<section class="card" aria-labelledby="acesso"><h2 id="acesso">Acesso do professor</h2><p id="account">Verificando sessão…</p><div class="actions"><button id="login" disabled>Entrar com Google</button><button id="consult" disabled>Consultar meu plano</button><button id="logout" class="outline" hidden>Sair</button></div><p id="status" role="status" aria-live="polite"></p></section>
+<section id="result" class="card" hidden><h2>Resultado da consulta</h2><dl id="summary"></dl><h3>Limites cadastrados</h3><ul id="limits"></ul><h3>Recursos cadastrados no plano</h3><ul id="features"></ul><p>Esta consulta não substitui a autorização das operações da plataforma.</p><details><summary>Ver resposta técnica</summary><pre id="json"></pre></details></section>
+<footer>Somente leitura · Firebase Authentication e Firestore · API no Netlify</footer></main><script type="module" src="teste.js"></script></body></html>

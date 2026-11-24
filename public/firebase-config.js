@@ -1,0 +1,9 @@
+// Configuração pública do app Firebase. Não inserir chave privada de conta de serviço.
+export const firebaseConfig={
+ apiKey:"AIzaSyCeqw5tGHTYzc1N7lJEqh7wjafI6lue2jU",
+ authDomain:"app-conexao-783a4.firebaseapp.com",
+ projectId:"app-conexao-783a4",
+ storageBucket:"app-conexao-783a4.firebasestorage.app",
+ messagingSenderId:"383311429620",
+ appId:"1:383311429620:web:21d4cd4b4108ad08de43a1"
+};
