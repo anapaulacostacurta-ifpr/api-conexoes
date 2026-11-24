@@ -37,6 +37,15 @@ export function createHandler({
     } else if (/disabled|not been used|SERVICE_DISABLED/i.test(mensagem)) {
       diagnostico = 'API_DESATIVADA';
     }
+    const codigo = String(e.code ?? 'SEM_CODIGO');
+
+    log(JSON.stringify({
+      evento: 'falha_consultar_plano',
+      diagnostico,
+      codigo: /^[a-zA-Z0-9/_-]{1,80}$/.test(codigo)
+        ? codigo
+        : 'CODIGO_NAO_RECONHECIDO'
+    }));
     return respond(500,{erro:{codigo:'ERRO_INTERNO',mensagem:'Não foi possível consultar. Confira a configuração e as permissões da conta de serviço no Netlify.'}});}
   };
 }
