@@ -50,7 +50,7 @@ Abra Project configuration / Environment variables (o nome pode variar conforme 
 
 | Variável | Valor |
 |---|---|
-| `FIREBASE_PROJECT_ID` | `app-conexao-783a4` |
+| `FIREBASE_PROJECT_ID` | Opcional. Se ausente, o código usa `app-conexao-783a4`; se definida, precisa ter exatamente esse valor |
 | `FIREBASE_CLIENT_EMAIL` | O campo `client_email` do JSON da conta de serviço |
 | `FIREBASE_PRIVATE_KEY` | O campo `private_key` do JSON, incluindo BEGIN e END PRIVATE KEY |
 | `PILOT_ALLOWED_UIDS` | Seu UID de professor aprovado; para várias contas, separe os UIDs por vírgula |
