@@ -63,7 +63,7 @@ O UID aparece em “Minha plataforma” no site atual. Também é possível copi
 
 Após salvar as variáveis, execute um novo deploy da branch principal. Alterar uma variável não atualiza funções já publicadas automaticamente.
 
-## 5. Autorizar o domínio do piloto no Firebase
+## 5. Autorizar o domínio do piloto no Firebase 
 
 1. Abra Firebase Console → projeto `app-conexao-783a4`.
 2. Acesse Authentication → Configurações → Domínios autorizados.
