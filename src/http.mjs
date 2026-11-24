@@ -1,6 +1,9 @@
 import {ApiError} from './errors.mjs';
 import {consultarMeuPlano} from './services/consultar-meu-plano.mjs';
-export function createHandler({getServices,allowedUids,allowedOrigins=[],log=()=>{}}){
+export function createHandler({
+  getServices,allowedUids,allowedOrigins=[],log=()=>{}
+})
+{
   return async request=>{
     const headers={'Content-Type':'application/json; charset=utf-8','Cache-Control':'private, no-store','Vary':'Origin','X-Content-Type-Options':'nosniff'};
     const respond=(status,body)=>new Response(JSON.stringify(body),{status,headers});
@@ -20,6 +23,20 @@ export function createHandler({getServices,allowedUids,allowedOrigins=[],log=()=
       if(!permitted.includes(identity.uid))throw new ApiError(403,'FORA_DO_PILOTO','Sua conta não está autorizada a participar do piloto.');
       const result=await consultarMeuPlano({identity,readDocument:services.readDocument});
       return respond(200,result);
-    }catch(e){if(e instanceof ApiError)return respond(e.status,{erro:{codigo:e.code,mensagem:e.message}});log('falha_consultar_plano');return respond(500,{erro:{codigo:'ERRO_INTERNO',mensagem:'Não foi possível consultar. Confira a configuração e as permissões da conta de serviço no Netlify.'}});}
+    }catch(e){
+      if(e instanceof ApiError)
+        return respond(e.status,{erro:{codigo:e.code,mensagem:e.message}});
+    const mensagem = String(e.message || '');
+    let diagnostico = 'ERRO_NAO_CLASSIFICADO';
+    if (/private key|PEM|DECODER|ASN1/i.test(mensagem)) {
+      diagnostico = 'FORMATO_DA_CHAVE_PRIVADA';
+    } else if (/invalid_grant|Invalid JWT Signature|account not found/i.test(mensagem)) {
+      diagnostico = 'CREDENCIAL_INVALIDA_OU_REVOGADA';
+    } else if (/permission|insufficient|denied/i.test(mensagem)) {
+      diagnostico = 'PERMISSAO_NEGADA';
+    } else if (/disabled|not been used|SERVICE_DISABLED/i.test(mensagem)) {
+      diagnostico = 'API_DESATIVADA';
+    }
+    return respond(500,{erro:{codigo:'ERRO_INTERNO',mensagem:'Não foi possível consultar. Confira a configuração e as permissões da conta de serviço no Netlify.'}});}
   };
 }
